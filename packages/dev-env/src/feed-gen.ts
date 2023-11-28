@@ -18,10 +18,10 @@ export class TestFeedGen {
   ) {}
 
   static async create(
+    port: number,
     plcUrl: string,
     feeds: Record<string, SkeletonHandler>,
   ): Promise<TestFeedGen> {
-    const port = await getPort()
     const did = await createFgDid(plcUrl, port)
     const app = express()
     const lexServer = createServer()

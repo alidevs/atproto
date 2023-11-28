@@ -302,40 +302,40 @@ export async function generateMockSetup(env: TestNetwork) {
     )
   }
 
-  const fg2Uri = AtUri.make(bob.did, 'app.bsky.feed.generator', 'bob-redux')
-  const fg2 = await env.createFeedGen({
-    [fg2Uri.toString()]: async () => {
-      const feed = posts
-        .filter(() => rand(2) === 0)
-        .map((post) => ({ post: post.uri }))
-      return {
-        encoding: 'application/json',
-        body: {
-          feed,
-        },
-      }
-    },
-  })
-  const fgBobRes = await bob.agent.api.app.bsky.feed.generator.create(
-    { repo: bob.did, rkey: fg2Uri.rkey },
-    {
-      did: fg2.did,
-      displayName: 'Bobby boy hot new algo',
-      createdAt: date.next().value,
-    },
-  )
+  // const fg2Uri = AtUri.make(bob.did, 'app.bsky.feed.generator', 'bob-redux')
+  // const fg2 = await env.createFeedGen({
+  //   [fg2Uri.toString()]: async () => {
+  //     const feed = posts
+  //       .filter(() => rand(2) === 0)
+  //       .map((post) => ({ post: post.uri }))
+  //     return {
+  //       encoding: 'application/json',
+  //       body: {
+  //         feed,
+  //       },
+  //     }
+  //   },
+  // })
+  // const fgBobRes = await bob.agent.api.app.bsky.feed.generator.create(
+  //   { repo: bob.did, rkey: fg2Uri.rkey },
+  //   {
+  //     did: fg2.did,
+  //     displayName: 'Bobby boy hot new algo',
+  //     createdAt: date.next().value,
+  //   },
+  // )
 
-  await alice.agent.api.app.bsky.feed.post.create(
-    { repo: alice.did },
-    {
-      text: `bobs feed is neat too`,
-      embed: {
-        $type: 'app.bsky.embed.record',
-        record: fgBobRes,
-      },
-      createdAt: date.next().value,
-    },
-  )
+  // await alice.agent.api.app.bsky.feed.post.create(
+  //   { repo: alice.did },
+  //   {
+  //     text: `bobs feed is neat too`,
+  //     embed: {
+  //       $type: 'app.bsky.embed.record',
+  //       record: fgBobRes,
+  //     },
+  //     createdAt: date.next().value,
+  //   },
+  // )
 }
 
 function ucfirst(str: string): string {

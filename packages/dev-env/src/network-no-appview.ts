@@ -36,7 +36,7 @@ export class TestNetworkNoAppView {
   async createFeedGen(
     feeds: Record<string, SkeletonHandler>,
   ): Promise<TestFeedGen> {
-    const fg = await TestFeedGen.create(this.plc.url, feeds)
+    const fg = await TestFeedGen.create(8088, this.plc.url, feeds)
     this.feedGens.push(fg)
     return fg
   }
